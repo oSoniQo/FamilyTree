@@ -1,11 +1,12 @@
 package ru.gb.family_tree;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person {
+public class Person implements Serializable {
     private String name;
     private Person mother, father;
     private List<Person> children;
@@ -76,7 +77,7 @@ public class Person {
         return children;
     }
 
-    public void addChildren(List<Person> children) {
+    public void setChildren(List<Person> children) {
         this.children = children;
     }
     public void addChild(Person child) {

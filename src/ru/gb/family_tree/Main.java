@@ -1,9 +1,11 @@
 package ru.gb.family_tree;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Main {
-    public static void main(String[] args) {
+public class Main implements Serializable {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         FamilyTree familyTree = new FamilyTree();
         Person person1 = new Person("Joe", Gender.Male, LocalDate.of(1990, 1, 8));
         Person person2 = new Person("Mary", Gender.Female, LocalDate.of(1995, 5, 21));
@@ -18,6 +20,11 @@ public class Main {
         person1.addChild(person3);
         System.out.println(familyTree);
         System.out.println(person1);
+        FileHandler fileHandler = new FileHandler();
+        fileHandler.save(familyTree);
+        System.out.println(fileHandler.load());
+
+
 
     }
 }
