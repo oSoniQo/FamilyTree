@@ -1,10 +1,15 @@
-package ru.gb.family_tree;
+package ru.gb.family_tree.familyTree;
+
+import ru.gb.family_tree.person.Person;
+import ru.gb.family_tree.person.comparators.PersonComparatorByBirthDate;
+import ru.gb.family_tree.person.comparators.PersonComparatorByName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
-public class FamilyTree implements Serializable {
+public class FamilyTree implements Serializable, Iterable<Person> {
     private List<Person> members;
     public FamilyTree(ArrayList<Person> members) {
         this.members = members;
@@ -34,5 +39,17 @@ public class FamilyTree implements Serializable {
             stringBuilder.append(member.toString()+"\n");
         }
         return stringBuilder.toString();
+    }
+
+    @Override
+    public Iterator<Person> iterator() {
+        return new PersonIterator(members);
+    }
+    public void sortByName(){
+        members.sort(new PersonComparatorByName());
+    }
+
+    public void sortByBirthDate(){
+        members.sort(new PersonComparatorByBirthDate());
     }
 }

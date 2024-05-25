@@ -1,4 +1,4 @@
-package ru.gb.family_tree;
+package ru.gb.family_tree.person;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -6,7 +6,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person implements Serializable {
+public class Person implements Serializable, Comparable<Person> {
     private String name;
     private Person mother, father;
     private List<Person> children;
@@ -180,5 +180,9 @@ public class Person implements Serializable {
     @Override
     public String toString() {
         return getInfo();
+    }
+    @Override
+    public int compareTo(Person o) {
+        return this.name.compareTo(o.name);
     }
 }

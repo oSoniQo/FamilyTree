@@ -1,5 +1,10 @@
 package ru.gb.family_tree;
 
+import ru.gb.family_tree.familyTree.FamilyTree;
+import ru.gb.family_tree.fileHandler.FileHandler;
+import ru.gb.family_tree.person.Gender;
+import ru.gb.family_tree.person.Person;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -18,11 +23,14 @@ public class Main implements Serializable {
         person1.setSpouse(person2);
         person2.setSpouse(person1);
         person1.addChild(person3);
-        System.out.println(familyTree);
-        System.out.println(person1);
+
         FileHandler fileHandler = new FileHandler();
         fileHandler.save(familyTree);
-        System.out.println(fileHandler.load());
+
+        familyTree.sortByName();
+        System.out.println(familyTree);
+        familyTree.sortByBirthDate();
+        System.out.println(familyTree);
 
 
 
