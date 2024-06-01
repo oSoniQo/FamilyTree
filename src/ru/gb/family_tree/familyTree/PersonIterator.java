@@ -1,15 +1,16 @@
 package ru.gb.family_tree.familyTree;
 
+import ru.gb.family_tree.FamilyTreeItem;
 import ru.gb.family_tree.person.Person;
 
 import java.util.Iterator;
 import java.util.List;
 
-public class PersonIterator implements Iterator<Person> {
+public class PersonIterator<T extends FamilyTreeItem> implements Iterator<T> {
     private int index;
-    private List<Person> members;
+    private List<T> members;
 
-    public PersonIterator(List<Person> members) {
+    public PersonIterator(List<T> members) {
         this.members = members;
     }
 
@@ -19,7 +20,7 @@ public class PersonIterator implements Iterator<Person> {
     }
 
     @Override
-    public Person next() {
+    public T next() {
         return members.get(index++);
     }
 }

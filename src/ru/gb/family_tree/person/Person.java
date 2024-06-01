@@ -1,12 +1,14 @@
 package ru.gb.family_tree.person;
 
+import ru.gb.family_tree.FamilyTreeItem;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person implements Serializable, Comparable<Person> {
+public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<Person> {
     private String name;
     private Person mother, father;
     private List<Person> children;
@@ -61,6 +63,7 @@ public class Person implements Serializable, Comparable<Person> {
     public Person getMother() {
         return mother;
     }
+
     public void setMother(Person mother) {
         this.mother = mother;
     }
@@ -76,6 +79,7 @@ public class Person implements Serializable, Comparable<Person> {
     public List<Person> getChildren() {
         return children;
     }
+
 
     public void setChildren(List<Person> children) {
         this.children = children;
