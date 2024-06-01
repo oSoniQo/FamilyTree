@@ -1,7 +1,5 @@
 package ru.gb.family_tree.familyTree;
 
-import ru.gb.family_tree.FamilyTreeItem;
-import ru.gb.family_tree.person.Person;
 import ru.gb.family_tree.person.comparators.PersonComparatorByBirthDate;
 import ru.gb.family_tree.person.comparators.PersonComparatorByName;
 

@@ -1,6 +1,6 @@
 package ru.gb.family_tree.person;
 
-import ru.gb.family_tree.FamilyTreeItem;
+import ru.gb.family_tree.familyTree.FamilyTreeItem;
 
 import java.io.Serializable;
 import java.time.LocalDate;

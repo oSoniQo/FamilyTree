@@ -1,4 +1,4 @@
-package ru.gb.family_tree;
+package ru.gb.family_tree.familyTree;
 
 import ru.gb.family_tree.person.Gender;
 import ru.gb.family_tree.person.Person;
