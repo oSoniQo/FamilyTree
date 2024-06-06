@@ -41,7 +41,7 @@ public class ConsoleUI implements View {
         work = false;
     }
     private void greetings(){
-        System.out.println("Здравствуйте");
+        System.out.println("Добро пожаловать в виртуальное семейное древо");
     }
 
     private void execute(){
