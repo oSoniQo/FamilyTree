@@ -1,7 +1,6 @@
-package ru.gb.family_tree.familyTree;
+package ru.gb.family_tree.model.familyTree;
 
-import ru.gb.family_tree.person.Gender;
-import ru.gb.family_tree.person.Person;
+import ru.gb.family_tree.model.person.Gender;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -56,5 +55,8 @@ public interface FamilyTreeItem<T> extends Comparable<T>, Serializable {
     void setSpouse(T spouse);
     T findChildByName(String name);
 
+    void setId(int id);
+
+    int getId();
 }
 

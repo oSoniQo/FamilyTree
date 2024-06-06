@@ -1,6 +1,6 @@
-package ru.gb.family_tree.person;
+package ru.gb.family_tree.model.person;
 
-import ru.gb.family_tree.familyTree.FamilyTreeItem;
+import ru.gb.family_tree.model.familyTree.FamilyTreeItem;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<Person> {
+    private int id;
     private String name;
     private Person mother, father;
     private List<Person> children;
     private LocalDate birthDate, deathDate;
     private Gender gender;
     private Person spouse;
-    public Person(String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Person mother, Person father, List<Person> children) {
+    public Person(int id, String name, Gender gender, LocalDate birthDate, LocalDate deathDate, Person mother, Person father, List<Person> children) {
+        this.id = id;
         this.name = name;
         this.gender = gender;
         this.birthDate = birthDate;
@@ -24,8 +26,16 @@ public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<
         this.father = father;
         this.children = children;
     }
-    public Person(String name, Gender gender, LocalDate birthDate) {
-        this(name, gender, birthDate, null, null, null, new ArrayList<Person>());
+    public Person(int id, String name, Gender gender, LocalDate birthDate, LocalDate deathDate) {
+        this(id, name, gender, birthDate, deathDate, null, null, new ArrayList<Person>());
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -106,7 +116,10 @@ public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<
         return null;
     }
     public int getAge(){
-        if (deathDate == null){
+        if (birthDate == null){
+            return -1;
+        }
+        else if (deathDate == null) {
             return getPeriod(birthDate, LocalDate.now());
         }
         else {
@@ -119,7 +132,9 @@ public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<
     }
     public String getInfo() {
         StringBuilder sb = new StringBuilder();
-        sb.append("name: ");
+        sb.append("id: ");
+        sb.append(id);
+        sb.append(", name: ");
         sb.append(name);
         sb.append(", gender: ");
         sb.append(gender);
@@ -168,8 +183,8 @@ public class Person implements Serializable, Comparable<Person>, FamilyTreeItem<
     public String getChildrenInfo(){
         StringBuilder res = new StringBuilder();
         res.append("children: ");
-        if (children.size() != 0){
-            res.append(children.get(0).getName());
+        if (!children.isEmpty()){
+            res.append(children.getFirst().getName());
             for (int i = 1; i < children.size(); i++) {
                 res.append(", ");
                 res.append(children.get(i).getName());

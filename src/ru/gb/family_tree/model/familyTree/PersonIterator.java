@@ -1,4 +1,4 @@
-package ru.gb.family_tree.familyTree;
+package ru.gb.family_tree.model.familyTree;
 
 import java.util.Iterator;
 import java.util.List;
