@@ -41,24 +41,21 @@ public class Service {
         try {
             members.findMemberById(choiceId).setFather(members.findMemberById(fatherId));
         }
-        catch (Exception e) {
-            return;
+        catch (Exception ignored) {
         }
     }
     public void setMother(int motherId, int choiceId) {
         try {
             members.findMemberById(choiceId).setMother(members.findMemberById(motherId));
         }
-        catch (Exception e) {
-            return;
+        catch (Exception ignored) {
         }
     }
     public void setSpouse(int spouseId, int choiceId) {
         try {
             members.findMemberById(choiceId).setSpouse(members.findMemberById(spouseId));
         }
-        catch (Exception e) {
-            return;
+        catch (Exception ignored) {
         }
     }
     public void addChild(int childId, int choiceId) {
