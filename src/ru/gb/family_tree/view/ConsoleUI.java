@@ -193,4 +193,12 @@ public class ConsoleUI implements View {
         executeAdditional(personId);
         printMenu(menu2);
     }
+    public void save() {
+        System.out.println("Древо будет сохранено в файле familyTree.out");
+        presenter.save();
+    }
+    public void load() {
+        System.out.println("Древо будет загружено из файла familyTree.out");
+        presenter.load();
+    }
 }

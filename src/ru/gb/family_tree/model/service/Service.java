@@ -1,16 +1,21 @@
 package ru.gb.family_tree.model.service;
 
 import ru.gb.family_tree.model.familyTree.FamilyTree;
+import ru.gb.family_tree.model.fileHandler.FileHandler;
 import ru.gb.family_tree.model.person.Gender;
 import ru.gb.family_tree.model.person.Person;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Service {
     private int idPerson;
     private FamilyTree<Person> members;
 
+    private FileHandler<Person> fileHandler;
+
     public Service() {
+        fileHandler = new FileHandler<>();
         members = new FamilyTree<>();
     }
 
@@ -62,9 +67,22 @@ public class Service {
         try {
             members.findMemberById(choiceId).addChild(members.findMemberById(childId));
         }
-        catch (Exception e) {
-            members.findMemberById(choiceId).addChild(members.findMemberById(childId));
+        catch (Exception ignored) {
         }
     }
+    public void save() {
+        try {
+            fileHandler.save(members);
+        } catch (Exception ignored) {
+        }
+    }
+    public void load() {
+        try {
+            members = fileHandler.load();
+        }
+        catch (Exception ignored) {
+        }
+    }
+
 
 }

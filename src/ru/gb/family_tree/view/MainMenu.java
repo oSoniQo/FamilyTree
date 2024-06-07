@@ -16,6 +16,8 @@ public class MainMenu implements Menu {
         commandList.add(new GetFamilyTreeInfo(consoleUI));
         commandList.add(new SortByName(consoleUI));
         commandList.add(new SortByBirthDate(consoleUI));
+        commandList.add(new Save(consoleUI));
+        commandList.add(new Load(consoleUI));
         commandList.add(new Finish(consoleUI));
     }
 

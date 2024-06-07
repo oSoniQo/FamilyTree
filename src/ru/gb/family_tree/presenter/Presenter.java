@@ -46,4 +46,11 @@ public class Presenter {
     public void addChild(int childId, int choiceId) {
         service.addChild(childId, choiceId);
     }
+
+    public void save() {
+        service.save();
+    }
+    public void load() {
+        service.load();
+    }
 }
