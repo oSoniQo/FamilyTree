@@ -5,7 +5,7 @@ import ru.gb.family_tree.model.familyTree.FamilyTreeItem;
 
 import java.io.*;
 
-public class FileHandler<T extends FamilyTreeItem<T>> implements Writable {
+public class FileHandler<T extends FamilyTreeItem<T>> implements FileWritable<T> {
     public void save(FamilyTree<T> familyTree) throws IOException {
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream("familyTree.out"));
         objectOutputStream.writeObject(familyTree);

@@ -73,6 +73,15 @@ public class ConsoleUI implements View {
         }
     }
 
+    public boolean checkTextForDateFormat(String text) {
+        if (Objects.equals(text, String.valueOf(DateTimeFormatter.ofPattern("dd.MM.yyyy")))){
+            return true;
+        } else {
+            inputError();
+            return false;
+        }
+    }
+
     private boolean checkCommand(int numCommand, Menu menu){
         if (numCommand <= menu.getSize()){
             return true;
@@ -89,6 +98,7 @@ public class ConsoleUI implements View {
     private void inputError(){
         System.out.println(INPUT_ERROR);
     }
+
     public void sortByBirthDate() {
         presenter.sortByBirthDate();
     }
@@ -164,23 +174,23 @@ public class ConsoleUI implements View {
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate birthDate, deathDate;
+
         System.out.println("Укажите дату рождения в формате dd.MM.yyyy");
         String birthDateString = scanner.nextLine();
-        try {
+        if (checkTextForDateFormat(birthDateString)) {
             birthDate = LocalDate.parse(birthDateString, formatter);
         }
-        catch (Exception e) {
+        else {
             birthDate = null;
-            inputError();
         }
+
         System.out.println("Укажите дату смерти");
         String deathDateString = scanner.nextLine();
-        try {
+        if (checkTextForDateFormat(deathDateString)) {
             deathDate = LocalDate.parse(deathDateString, formatter);
         }
-        catch (Exception e) {
+        else {
             deathDate = null;
-            inputError();
         }
 
         presenter.addMember(name, gender, birthDate, deathDate);
@@ -201,4 +211,5 @@ public class ConsoleUI implements View {
         System.out.println("Древо будет загружено из файла familyTree.out");
         presenter.load();
     }
+
 }

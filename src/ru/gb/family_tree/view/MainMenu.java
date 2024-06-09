@@ -8,6 +8,7 @@ import java.util.List;
 
 public class MainMenu implements Menu {
     private List<ExecutableCommand> commandList;
+    private MenuDesignUI<ExecutableCommand> menuDesign;
 
     public MainMenu(ConsoleUI consoleUI) {
         commandList = new ArrayList<>();
@@ -19,17 +20,11 @@ public class MainMenu implements Menu {
         commandList.add(new Save(consoleUI));
         commandList.add(new Load(consoleUI));
         commandList.add(new Finish(consoleUI));
+        menuDesign = new MenuDesignUI<>(commandList);
     }
 
     public String menu(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < commandList.size(); i++) {
-            stringBuilder.append(i+1);
-            stringBuilder.append(". ");
-            stringBuilder.append(commandList.get(i).getDescription());
-            stringBuilder.append("\n");
-        }
-        return stringBuilder.toString();
+        return menuDesign.getMenu();
     }
 
     public void execute(int choice){

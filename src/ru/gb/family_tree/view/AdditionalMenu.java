@@ -7,6 +7,7 @@ import java.util.List;
 
 public class AdditionalMenu implements Menu {
         private List<ExecutableArgCommand> commandList;
+        private MenuDesignUI<ExecutableArgCommand> menuDesign;
 
         private int choiceId;
 
@@ -16,17 +17,11 @@ public class AdditionalMenu implements Menu {
             commandList.add(new SetMother(consoleUI));
             commandList.add(new SetSpouse(consoleUI));
             commandList.add(new AddChild(consoleUI));
+            menuDesign = new MenuDesignUI<>(commandList);
         }
 
         public String menu(){
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int i = 0; i < commandList.size(); i++) {
-                stringBuilder.append(i+1);
-                stringBuilder.append(". ");
-                stringBuilder.append(commandList.get(i).getDescription());
-                stringBuilder.append("\n");
-            }
-            return stringBuilder.toString();
+            return menuDesign.getMenu();
         }
 
         public void execute(int choice){

@@ -11,12 +11,15 @@ import java.util.List;
 public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, Iterable<E> {
     private int personId;
     private List<E> members;
+
     public FamilyTree(ArrayList<E> members) {
         this.members = members;
     }
+
     public FamilyTree() {
         this(new ArrayList<E>());
     }
+
     public void addMember(E member) {
         members.add(member);
         member.setId(personId++);
@@ -24,6 +27,7 @@ public class FamilyTree<E extends FamilyTreeItem<E>> implements Serializable, It
     public void removeMemberByName(String name) {
         members.remove(findMemberByName(name));
     }
+
     public E findMemberByName(String name) {
         for (E member : members) {
             if (member.getName().equalsIgnoreCase(name)) {
