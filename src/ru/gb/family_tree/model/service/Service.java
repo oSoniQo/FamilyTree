@@ -1,7 +1,9 @@
 package ru.gb.family_tree.model.service;
 
+import org.w3c.dom.ls.LSOutput;
 import ru.gb.family_tree.model.familyTree.FamilyTree;
 import ru.gb.family_tree.model.fileHandler.FileHandler;
+import ru.gb.family_tree.model.fileHandler.FileWritable;
 import ru.gb.family_tree.model.person.Gender;
 import ru.gb.family_tree.model.person.Person;
 
@@ -12,10 +14,10 @@ public class Service {
     private int idPerson;
     private FamilyTree<Person> members;
 
-    private FileHandler<Person> fileHandler;
+    private FileWritable<Person> fileWritable;
 
-    public Service() {
-        fileHandler = new FileHandler<>();
+    public Service(FileWritable<Person> fileWritable) {
+        this.fileWritable = fileWritable;
         members = new FamilyTree<>();
     }
 
@@ -43,45 +45,30 @@ public class Service {
     }
 
     public void setFather(int fatherId, int choiceId) {
-        try {
+        if (members.findMemberById(fatherId) != null && members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setFather(members.findMemberById(fatherId));
-        }
-        catch (Exception ignored) {
         }
     }
     public void setMother(int motherId, int choiceId) {
-        try {
+        if (members.findMemberById(motherId) != null && members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setMother(members.findMemberById(motherId));
-        }
-        catch (Exception ignored) {
         }
     }
     public void setSpouse(int spouseId, int choiceId) {
-        try {
+        if (members.findMemberById(spouseId) != null && members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setSpouse(members.findMemberById(spouseId));
-        }
-        catch (Exception ignored) {
         }
     }
     public void addChild(int childId, int choiceId) {
-        try {
+        if (members.findMemberById(childId) != null && members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).addChild(members.findMemberById(childId));
         }
-        catch (Exception ignored) {
-        }
     }
-    public void save() {
-        try {
-            fileHandler.save(members);
-        } catch (Exception ignored) {
-        }
+    public void save() throws Exception {
+        fileWritable.save(members);
     }
-    public void load() {
-        try {
-            members = fileHandler.load();
-        }
-        catch (Exception ignored) {
-        }
+    public void load() throws Exception {
+        members = fileWritable.load();
     }
 
 

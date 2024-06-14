@@ -1,9 +1,11 @@
 package ru.gb.family_tree.presenter;
 
+import ru.gb.family_tree.model.fileHandler.FileHandler;
 import ru.gb.family_tree.model.person.Gender;
 import ru.gb.family_tree.model.service.Service;
 import ru.gb.family_tree.view.View;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class Presenter {
@@ -12,7 +14,7 @@ public class Presenter {
 
     public Presenter(View view) {
         this.view = view;
-        service = new Service();
+        service = new Service(new FileHandler<>());
     }
 
     public void addMember(String name, Gender gender, LocalDate birthDate, LocalDate deathDate) {
@@ -47,10 +49,10 @@ public class Presenter {
         service.addChild(childId, choiceId);
     }
 
-    public void save() {
+    public void save() throws Exception {
         service.save();
     }
-    public void load() {
+    public void load() throws Exception {
         service.load();
     }
 }

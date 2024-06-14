@@ -3,6 +3,7 @@ package ru.gb.family_tree.view;
 import ru.gb.family_tree.model.person.Gender;
 import ru.gb.family_tree.presenter.Presenter;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -205,11 +206,19 @@ public class ConsoleUI implements View {
     }
     public void save() {
         System.out.println("Древо будет сохранено в файле familyTree.out");
-        presenter.save();
+        try {
+            presenter.save();
+        } catch (Exception e) {
+            System.out.println("Ошибка при создании файла");
+        }
     }
     public void load() {
         System.out.println("Древо будет загружено из файла familyTree.out");
-        presenter.load();
+        try {
+            presenter.load();
+        } catch (Exception e) {
+            System.out.println("Ошибка при загрузке файла");
+        }
     }
 
 }
