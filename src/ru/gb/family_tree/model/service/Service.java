@@ -45,22 +45,22 @@ public class Service {
     }
 
     public void setFather(int fatherId, int choiceId) {
-        if (members.findMemberById(fatherId) != null && members.findMemberById(choiceId) != null) {
+        if (members.findMemberById(fatherId) != null || members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setFather(members.findMemberById(fatherId));
         }
     }
     public void setMother(int motherId, int choiceId) {
-        if (members.findMemberById(motherId) != null && members.findMemberById(choiceId) != null) {
+        if (members.findMemberById(motherId) != null || members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setMother(members.findMemberById(motherId));
         }
     }
     public void setSpouse(int spouseId, int choiceId) {
-        if (members.findMemberById(spouseId) != null && members.findMemberById(choiceId) != null) {
+        if (members.findMemberById(spouseId) != null || members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).setSpouse(members.findMemberById(spouseId));
         }
     }
     public void addChild(int childId, int choiceId) {
-        if (members.findMemberById(childId) != null && members.findMemberById(choiceId) != null) {
+        if (members.findMemberById(childId) != null || members.findMemberById(choiceId) != null) {
             members.findMemberById(choiceId).addChild(members.findMemberById(childId));
         }
     }
